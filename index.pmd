@@ -2,7 +2,7 @@
 % Jon Craton
 
 ```python,echo=False
-from sympy import Matrix, latex, sqrt, eye, diag, symbols, solveset, integrate, Eq, solve, exp, oo, pi, cos
+from sympy import Matrix, latex, sqrt, eye, diag, symbols, solveset, integrate, Eq, solve, exp, oo, pi, cos, summation
 from sympy.plotting import plot
 
 import seaborn as sns
@@ -304,18 +304,43 @@ We already know $E(x)$, so now we just put this together:
 integrate(x**2*f,bounds) - integrate(x*f,bounds)**2
 ```
 
-a.
-Find c 
-b.
-Find E(X) 
-4.
-f(x) = c/x  and x = {-2, -1, 1, 2}  (discrete random variable) 
-a.
-Find c 
-b.
-Find E(X) 
-c.
-Find Var(X) 
+Problem 4
+=========
+
+$f(x) = c/x$ 
+
+$x = \{-2, -1, 1, 2\}$  (discrete random variable)
+
+The theory is the same for a discrete RV.
+
+Part A
+------
+
+> Find c 
+
+We know that our total probabilty will always be 1, so we can exploit this find the value of `c` which satisfied this property. Previously, this involved solving an integral. This time it simply involves solving a sum.
+
+```python,results='tex'
+f = c/x
+values = [-2,-1,1,2]
+
+print([f.subs(x,v) for v in values])
+```
+
+This appears to be quite broken. We see a few issues:
+
+1. The total probability is 0.
+2. Several individual probabilities are negative.
+
+The graph would be something like this:
+
+```python,results='hidden'
+plot(1/x,(x,-2,2))
+```
+
+We can see that no amount of scaling will produce a total probability of 1.
+
+
 5.
 f(x) = c cos(x^2) + |x|   x= [-1 1] 
 a.
