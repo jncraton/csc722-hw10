@@ -340,9 +340,94 @@ plot(1/x,(x,-2,2))
 
 We can see that no amount of scaling will produce a total probability of 1.
 
+Problem 5
+=========
 
-5.
-f(x) = c cos(x^2) + |x|   x= [-1 1] 
+$f(x) = c cos(x^2) + |x|
+
+$x= [-1,1]$
+
+Part A
+------
+
+> Find c 
+
+We know that our total probabilty will always be 1, so we can exploit this find the value of `c` which satisfied this property.
+
+```python,results='tex'
+f = c*cos(x**2) + abs(x)
+bounds = (x,-1,1)
+
+tex(f)
+
+c_val = solve(integrate(f,bounds) - 1)[0]
+
+print(c_val)
+```
+
+Now we can plug this back into our original expression:
+
+```python,results='tex'
+f = f.subs(c, c_val)
+
+tex(f)
+```
+
+We can see that the cosine term drops out completely. Let's plot this:
+
+```python,results='tex'
+plot(f,bounds)
+```
+
+Part B
+------
+
+> Find E(X) 
+
+Recall that:
+
+$E(x) = \int xf(x)dx$
+
+We can solve this easily enough:
+
+```python,results='tex'
+integrate(x*f,bounds)
+```
+
+That makes intuitive sense simply by looking at the symmetry of the graph:
+
+```python,results='hidden'
+plot(x*f,bounds)
+```
+
+Part C
+------
+
+> Find Var(X) 
+
+This wasn't requested, but I'll calculate it anyway.
+
+Recall the following expression for variance:
+
+$Var(x) = E(x^2) - E(x)^2$
+
+Let's take that one piece at a time and find $E(x^2)$ first:
+
+$E(x^2) = \int x^2f(x)dx$
+
+```python
+integrate(x**2*f,bounds)
+```
+
+We already know $E(x)$, so now we just put this together:
+
+```python
+integrate(x**2*f,bounds) - integrate(x*f,bounds)**2
+```
+
+
+
+ 
 a.
 Find E(X) 
 6.
