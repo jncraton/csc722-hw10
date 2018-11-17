@@ -4,4 +4,4 @@ seaborn
 networkx
 scipy
 scikit-learn
-pygraphviz
+sympy
