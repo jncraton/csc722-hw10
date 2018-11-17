@@ -2,7 +2,7 @@
 % CSC 722 HW 10
 
 ```python,echo=False
-from sympy import Matrix, latex, sqrt, eye, diag, symbols, solveset, integrate, Eq, solve
+from sympy import Matrix, latex, sqrt, eye, diag, symbols, solveset, integrate, Eq, solve, exp, oo
 from sympy.matrices.matrices import MatrixError
 
 def tex(l,v=''):
@@ -153,10 +153,75 @@ We already know $E(x)$, so now we just put this together:
 integrate(x**2*f,bounds) - integrate(x*f,bounds)**2
 ```
 
+Problem 2
+=========
 
-2.
-f(x) = c  exp(-2x) and x= [0  infinity] 
-a.
+$f(x) = c e^{-2x}$
+
+$x = [0,infinity]$ 
+
+Part A
+------
+
+> Find c 
+
+We know that our total probabilty will always be 1, so we can exploit this find the value of `c` which satisfied this property.
+
+```python,results='tex'
+f = c*exp(-2*x)
+bounds = (x,0,oo)
+
+c_val = solve(integrate(f,bounds) - 1)[0]
+
+print(c_val)
+```
+
+Now we can plug this back into our original expression:
+
+```python,results='tex'
+f = f.subs(c, c_val)
+
+tex(f)
+```
+
+Part B
+------
+
+> Find E(X) 
+
+Recall that:
+
+$E(x) = \int xf(x)dx$
+
+We can solve this easily enough:
+
+```python,results='tex'
+integrate(x*f,bounds)
+```
+
+Part C
+------
+
+> Find Var(X) 
+
+Recall the following expression for variance:
+
+$Var(x) = E(x^2) - E(x)^2$
+
+Let's take that one piece at a time and find $E(x^2)$ first:
+
+$E(x^2) = \int x^2f(x)dx$
+
+```python
+integrate(x**2*f,bounds)
+```
+
+We already know $E(x)$, so now we just put this together:
+
+```python
+integrate(x**2*f,bounds) - integrate(x*f,bounds)**2
+```
+
 Find c 
 b.
 Find E(X) 
