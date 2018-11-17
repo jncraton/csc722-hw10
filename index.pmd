@@ -40,10 +40,10 @@ This lines up with the result from lecture.
 
 Now we can plug this back into our original expression:
 
-```python
+```python,results='tex'
 f = f.subs(c, c_val)
 
-print(f)
+tex(f)
 ```
 
 Expected Value
