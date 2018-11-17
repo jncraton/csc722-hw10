@@ -87,9 +87,9 @@ This matches the result from lecture. Now let's just do this a bunch more times.
 Problem 1
 =========
 
-    f(x) = cx^2
+$f(x) = cx^2$
     
-    x = [0  2] 
+$x = [0,2]$ 
 
 Part A
 ------
@@ -99,20 +99,59 @@ Part A
 We know that our total probabilty will always be 1, so we can exploit this find the value of `c` which satisfied this property.
 
 ```python,results='tex'
-c,x = symbols('c x')
+f = c*x**2
+bounds = (x,0,2)
 
-solve(integrate(c*x**2,(x,0,2)) - 1)
+c_val = solve(integrate(f,bounds) - 1)[0]
+
+print(c_val)
+```
+
+Now we can plug this back into our original expression:
+
+```python,results='tex'
+f = f.subs(c, c_val)
+
+tex(f)
 ```
 
 Part B
 ------
 
-Find E(X) 
+> Find E(X) 
+
+Recall that:
+
+$E(x) = \int xf(x)dx$
+
+We can solve this easily enough:
+
+```python,results='tex'
+integrate(x*f,bounds)
+```
 
 Part C
 ------
 
-Find Var(X) 
+> Find Var(X) 
+
+Recall the following expression for variance:
+
+$Var(x) = E(x^2) - E(x)^2$
+
+Let's take that one piece at a time and find $E(x^2)$ first:
+
+$E(x^2) = \int x^2f(x)dx$
+
+```python
+integrate(x**2*f,bounds)
+```
+
+We already know $E(x)$, so now we just put this together:
+
+```python
+integrate(x**2*f,bounds) - integrate(x*f,bounds)**2
+```
 
 
 2.
