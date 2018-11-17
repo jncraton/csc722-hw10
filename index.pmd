@@ -350,7 +350,7 @@ $x= [-1,1]$
 Part A
 ------
 
-> Find c 
+Let's find `c` first.
 
 We know that our total probabilty will always be 1, so we can exploit this find the value of `c` which satisfied this property.
 
@@ -379,8 +379,60 @@ We can see that the cosine term drops out completely. Let's plot this:
 plot(f,bounds)
 ```
 
-Part B
+> Find E(X) 
+
+Recall that:
+
+$E(x) = \int xf(x)dx$
+
+We can solve this easily enough:
+
+```python,results='tex'
+integrate(x*f,bounds)
+```
+
+That makes intuitive sense simply by looking at the symmetry of the graph:
+
+```python,results='hidden'
+plot(x*f,bounds)
+```
+
+Problem 6
+=========
+
+$f(x) = c (1 – x^2)$ 
+
+$x= [-1, 1]$
+ 
+Part A
 ------
+
+Let's start by finding c.
+
+We know that our total probabilty will always be 1, so we can exploit this find the value of `c` which satisfied this property.
+
+```python,results='tex'
+f = c*(1-x**2)
+bounds = (x,-1,1)
+
+c_val = solve(integrate(f,bounds) - 1)[0]
+
+print(c_val)
+```
+
+Now we can plug this back into our original expression:
+
+```python,results='tex'
+f = f.subs(c, c_val)
+
+tex(f)
+```
+
+Let's plot this:
+
+```python,results='hidden'
+plot(f,bounds)
+```
 
 > Find E(X) 
 
@@ -400,12 +452,10 @@ That makes intuitive sense simply by looking at the symmetry of the graph:
 plot(x*f,bounds)
 ```
 
-Part C
+Part B
 ------
 
 > Find Var(X) 
-
-This wasn't requested, but I'll calculate it anyway.
 
 Recall the following expression for variance:
 
@@ -424,15 +474,3 @@ We already know $E(x)$, so now we just put this together:
 ```python
 integrate(x**2*f,bounds) - integrate(x*f,bounds)**2
 ```
-
-
-
- 
-a.
-Find E(X) 
-6.
-f(x) = c (1 – x^2) x= [-1 1] 
-a.
-Find E(X) 
-b.
-Find Var(X) 
