@@ -1,3 +1,147 @@
-% Title
-% Author
-% August 5th, 2018
+% Jon Craton
+% CSC 722 HW 10
+
+```python,echo=False
+from sympy import Matrix, latex, sqrt, eye, diag, symbols, solveset, integrate, Eq, solve
+from sympy.matrices.matrices import MatrixError
+
+def tex(l,v=''):
+  if v:
+    v += ' = '
+
+  print('$%s%s$' % (v,latex(l)))
+```
+
+Lecture Example
+===============
+
+Before we jump into the problem set, let's replicate a result from lecture to confirm our understanding.
+
+    f(x) = c(1-x)
+    x = [0,1]
+
+Finding c
+---------
+
+We know that our total probabilty will always be 1, so we can exploit this find the value of `c` which satisfied this property.
+
+```python,results='tex'
+c,x = symbols('c x')
+
+f = c*(1-x)
+bounds = (x,0,1)
+
+c_val = solve(integrate(f,bounds) - 1)[0]
+
+print(c_val)
+```
+
+This lines up with the result from lecture.
+
+Now we can plug this back into our original expression:
+
+```python
+f = f.subs(c, c_val)
+
+print(f)
+```
+
+Expected Value
+--------------
+
+Recall that:
+
+$E(x) = \int xf(x)dx$
+
+We can solve this easily enough:
+
+```python,results='tex'
+integrate(x*f,bounds)
+```
+
+We see that this also matches the lecture.
+
+Variance
+--------
+
+Recall the following expression for variance:
+
+$Var(x) = E(x^2) - E(x)^2$
+
+Let's take that one piece at a time and find $E(x^2)$ first:
+
+$E(x^2) = \int x^2f(x)dx$
+
+```python
+integrate(x**2*f,bounds)
+```
+
+Nice. We already know $E(x)$, so now we just put this together:
+
+```python
+integrate(x**2*f,bounds) - integrate(x*f,bounds)**2
+```
+
+This matches the result from lecture. Now let's just do this a bunch more times.
+
+Problem 1
+=========
+
+    f(x) = cx^2
+    
+    x = [0  2] 
+
+Part A
+------
+
+> Find c 
+
+We know that our total probabilty will always be 1, so we can exploit this find the value of `c` which satisfied this property.
+
+```python,results='tex'
+c,x = symbols('c x')
+
+solve(integrate(c*x**2,(x,0,2)) - 1)
+```
+
+Part B
+------
+
+Find E(X) 
+
+Part C
+------
+
+Find Var(X) 
+
+
+2.
+f(x) = c  exp(-2x) and x= [0  infinity] 
+a.
+Find c 
+b.
+Find E(X) 
+3.
+f(x) = c cos(2x) and x= [-pi/4  pi/4]   
+a.
+Find c 
+b.
+Find E(X) 
+4.
+f(x) = c/x  and x = {-2, -1, 1, 2}  (discrete random variable) 
+a.
+Find c 
+b.
+Find E(X) 
+c.
+Find Var(X) 
+5.
+f(x) = c cos(x^2) + |x|   x= [-1 1] 
+a.
+Find E(X) 
+6.
+f(x) = c (1 – x^2) x= [-1 1] 
+a.
+Find E(X) 
+b.
+Find Var(X) 
