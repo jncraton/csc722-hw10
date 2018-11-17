@@ -1,5 +1,5 @@
-% Jon Craton
 % CSC 722 HW 10
+% Jon Craton
 
 ```python,echo=False
 from sympy import Matrix, latex, sqrt, eye, diag, symbols, solveset, integrate, Eq, solve, exp, oo
