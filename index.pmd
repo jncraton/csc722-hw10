@@ -26,7 +26,7 @@ Before we jump into the problem set, let's replicate a result from lecture to co
 Finding c
 ---------
 
-We know that our total probabilty will always be 1, so we can exploit this find the value of `c` which satisfied this property.
+We know that our total probabilty will always be 1, so we can exploit this to find the value of `c` which satisfies this property.
 
 ```python,results='tex'
 c,x = symbols('c x')
@@ -99,7 +99,7 @@ Part A
 
 > Find c 
 
-We know that our total probabilty will always be 1, so we can exploit this find the value of `c` which satisfied this property.
+We know that our total probabilty will always be 1, so we can exploit this to find the value of `c` which satisfies this property.
 
 ```python,results='tex'
 f = c*x**2
@@ -168,7 +168,7 @@ Part A
 
 > Find c 
 
-We know that our total probabilty will always be 1, so we can exploit this find the value of `c` which satisfied this property.
+We know that our total probabilty will always be 1, so we can exploit this to find the value of `c` which satisfies this property.
 
 ```python,results='tex'
 f = c*exp(-2*x)
@@ -239,7 +239,7 @@ Part A
 
 > Find c 
 
-We know that our total probabilty will always be 1, so we can exploit this find the value of `c` which satisfied this property.
+We know that our total probabilty will always be 1, so we can exploit this to find the value of `c` which satisfies this property.
 
 ```python,results='tex'
 f = c*cos(2*x)
@@ -318,7 +318,7 @@ Part A
 
 > Find c 
 
-We know that our total probabilty will always be 1, so we can exploit this find the value of `c` which satisfied this property. Previously, this involved solving an integral. This time it simply involves solving a sum.
+We know that our total probabilty will always be 1, so we can exploit this to find the value of `c` which satisfies this property. Previously, this involved solving an integral. This time it simply involves solving a sum.
 
 ```python,results='tex'
 f = c/x
@@ -352,7 +352,7 @@ Part A
 
 Let's find `c` first.
 
-We know that our total probabilty will always be 1, so we can exploit this find the value of `c` which satisfied this property.
+We know that our total probabilty will always be 1, so we can exploit this to find the value of `c` which satisfies this property.
 
 ```python,results='tex'
 f = c*cos(x**2) + abs(x)
@@ -409,7 +409,7 @@ Part A
 
 Let's start by finding c.
 
-We know that our total probabilty will always be 1, so we can exploit this find the value of `c` which satisfied this property.
+We know that our total probabilty will always be 1, so we can exploit this to find the value of `c` which satisfies this property.
 
 ```python,results='tex'
 f = c*(1-x**2)
